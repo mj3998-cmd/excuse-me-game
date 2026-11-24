@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXCUSE ME! - The World's Worst Excuse Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Decorative Background Elements -->
+  <div class="bg-doodles" aria-hidden="true">
+    <span class="doodle doodle-1">💥</span>
+    <span class="doodle doodle-2">🍕</span>
+    <span class="doodle doodle-3">🦹</span>
+    <span class="doodle doodle-4">🚀</span>
+    <span class="doodle doodle-5">⏰</span>
+    <span class="doodle doodle-6">🦩</span>
+    <span class="doodle doodle-7">🥑</span>
+    <span class="doodle doodle-8">⚡</span>
+  </div>
+
+  <main class="app-container">
+    
+    <!-- ========================================== -->
+    <!-- 1. WELCOME SCREEN                          -->
+    <!-- ========================================== -->
+    <section id="welcome-screen" class="screen active">
+      <div class="card hero-card">
+        <div class="brand-badge">🚨 Collaborative Chaos Ahead</div>
+        
+        <h1 class="logo-title">
+          <span class="logo-word word-excuse">EXCUSE</span>
+          <span class="logo-word word-me">ME!</span>
+        </h1>
+        
+        <p class="subtitle">The world's worst excuse generator.</p>
+
+        <!-- Player Name Section -->
+        <div class="form-group">
+          <label for="player-name-input" class="input-label">Your Party Name</label>
+          <div class="input-with-button">
+            <input 
+              type="text" 
+              id="player-name-input" 
+              placeholder="e.g. DJ Pickles" 
+              maxlength="16" 
+              autocomplete="off"
+            >
+            <button id="random-name-btn" type="button" class="btn btn-icon" title="Generate Random Name">
+              🎲
+            </button>
+          </div>
+        </div>
+
+        <!-- Room Action Cards -->
+        <div class="action-grid">
+          <!-- Create Room -->
+          <div class="action-card card-create">
+            <h3>Start a New Room</h3>
+            <p>Create a game room and invite your friends (or play with hilarious bots).</p>
+            <button id="create-room-btn" class="btn btn-primary btn-block">
+              ✨ Create Room
+            </button>
+          </div>
+
+          <!-- Join Room -->
+          <div class="action-card card-join">
+            <h3>Join an Existing Room</h3>
+            <p>Have a 4-letter code from a friend or another browser tab?</p>
+            <div class="join-row">
+              <input 
+                type="text" 
+                id="room-code-input" 
+                placeholder="CODE" 
+                maxlength="4" 
+                autocomplete="off"
+                class="room-code-input"
+              >
+              <button id="join-room-btn" class="btn btn-secondary">
+                🚀 Join Room
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- How It Works Pill Box -->
+        <div class="how-it-works">
+          <h4>How it works:</h4>
+          <ol class="rules-list">
+            <li><strong>1. Join up:</strong> Up to 5 players per room (or simulate with bots).</li>
+            <li><strong>2. Assigned roles:</strong> Who? Did what? What? Where? Why?</li>
+            <li><strong>3. The Reveal:</strong> As soon as all 5 submit, the excuse is revealed!</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- 2. GAME SCREEN                             -->
+    <!-- ========================================== -->
+    <section id="game-screen" class="screen">
+      <!-- Top Room Header -->
+      <header class="room-header">
+        <div class="room-pill">
+          <span class="pill-label">ROOM</span>
+          <strong id="display-room-code" class="pill-code">----</strong>
+          <button id="copy-room-code-btn" class="mini-copy-btn" title="Copy Room Code">📋</button>
+        </div>
+
+        <div class="player-identity-pill">
+          <span>Playing as:</span>
+          <strong id="current-player-name">Player</strong>
+        </div>
+
+        <button id="leave-room-btn" class="btn btn-ghost btn-sm" title="Exit room">
+          🚪 Exit
+        </button>
+      </header>
+
+      <!-- Main Game Card -->
+      <div class="card game-card">
+        <!-- Question / Situation Display -->
+        <div class="question-container">
+          <span class="question-badge">🎯 THE PREDICAMENT</span>
+          <h2 id="question-text" class="question-title">
+            Why were you late to class?
+          </h2>
+        </div>
+
+        <!-- Player Assignment Area -->
+        <div class="assignment-box">
+          <div class="category-header">
+            <span class="category-tag">YOUR ASSIGNED PART</span>
+            <h3 id="category-title" class="category-name">The Suspicious Culprit</h3>
+            <p id="category-hint" class="category-hint">Who or what triggered this entire disaster?</p>
+          </div>
+
+          <!-- Player Answer Form -->
+          <div class="form-group">
+            <label for="player-answer-input" class="sr-only">Your contribution</label>
+            <div class="answer-input-container">
+              <textarea 
+                id="player-answer-input" 
+                placeholder="Type your ridiculous answer here..." 
+                rows="2"
+                maxlength="100"
+              ></textarea>
+              <button id="inspire-btn" type="button" class="btn btn-pill-sparkle" title="Need inspiration?">
+                💡 Silly Idea
+              </button>
+            </div>
+          </div>
+
+          <!-- Submit Button & Submission Status -->
+          <div class="submit-actions">
+            <button id="submit-answer-btn" class="btn btn-primary btn-large btn-block">
+              💥 Lock In My Excuse Part!
+            </button>
+            <div id="submission-confirmation" class="submission-banner hidden">
+              🎉 Locked in! Waiting for the rest of the crew...
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Progress & Player Status -->
+        <div class="progress-section">
+          <div class="progress-header">
+            <h4>Party Status</h4>
+            <span id="submission-counter" class="submission-counter">1/5 Submitted</span>
+          </div>
+
+          <div class="progress-bar-track">
+            <div id="progress-bar-fill" class="progress-bar-fill" style="width: 20%;"></div>
+          </div>
+
+          <!-- Players List Chips -->
+          <div id="players-chips-container" class="players-chips">
+            <!-- Dynamically populated chips -->
+          </div>
+
+          <!-- Solo/Demo Helper Action -->
+          <div id="bot-assist-banner" class="bot-assist-banner">
+            <span>Testing alone or need more players?</span>
+            <button id="fill-bots-btn" class="btn btn-accent btn-sm">
+              🤖 Simulate Other Players (Demo)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- 3. REVEAL SCREEN                           -->
+    <!-- ========================================== -->
+    <section id="reveal-screen" class="screen">
+      <!-- Confetti Canvas -->
+      <canvas id="confetti-canvas"></canvas>
+
+      <div class="card reveal-card">
+        <div class="reveal-header">
+          <div class="reveal-badge">✨ THE MASTERPIECE OF DECEPTION ✨</div>
+          <p class="reveal-prompt-label">The question was:</p>
+          <h2 id="reveal-question-text" class="reveal-question">
+            "Why were you late to class?"
+          </h2>
+        </div>
+
+        <!-- Large Typography Excuse Showcase -->
+        <div class="excuse-showcase">
+          <div class="quote-mark quote-start">“</div>
+          <div id="completed-excuse-content" class="completed-excuse-content">
+            <!-- Assembled sentence segments inserted dynamically -->
+          </div>
+          <div class="quote-mark quote-end">”</div>
+        </div>
+
+        <!-- Player Breakdown Legend -->
+        <div class="contributors-box">
+          <span class="contributors-title">Written collaboratively by:</span>
+          <div id="contributors-list" class="contributors-list">
+            <!-- Badges showing who contributed which part -->
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="reveal-actions">
+          <button id="copy-excuse-btn" class="btn btn-secondary btn-large">
+            📋 Copy Excuse
+          </button>
+          <button id="read-aloud-btn" class="btn btn-accent btn-large">
+            🔊 Read Aloud
+          </button>
+          <button id="play-again-btn" class="btn btn-primary btn-large">
+            🔄 Play Again
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <!-- Firebase Modular App Script -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+
